@@ -11,6 +11,8 @@
 #
 # VERSION   0.1
 # based on https://github.com/waitingkuo/dockerfiles/blob/master/dockerfiles/mongodb/Dockerfile
+# modifications for newer 2.6 release
+# from info at http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
 
 
 FROM ubuntu:latest
@@ -23,13 +25,14 @@ RUN ln -s /bin/true /sbin/initctl
 
 # Install MongoDB
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
-RUN echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | tee /etc/apt/sources.list.d/10gen.list
+RUN echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | tee /etc/apt/sources.list.d/mongodb.list
 RUN apt-get update
-RUN apt-get install -y mongodb-10gen
+RUN apt-get install -y mongodb-org-server
 
 # DIR For MongoDB
-RUN mkdir -p /data/db
-RUN mkdir -p /data/etc
+RUN mkdir -p /data/db /data/etc
+
+ADD mongod.conf /data/etc/
 
 # mongod
 EXPOSE 27017
@@ -38,4 +41,4 @@ EXPOSE 27017
 EXPOSE 28017
 
 
-CMD ["mongod", "-f", "/data/etc/mongodb.conf"]
+CMD ["mongod", "-f", "/data/etc/mongod.conf"]
