@@ -7,6 +7,9 @@ single instance mongodb for dev purposes.. generic enough to be used for other p
 uses mongodb 2.6+
 
 
+only installs mongodb-org-server and mongodb-org-mongos
+
+
 
 how to use
 ----------
@@ -56,3 +59,9 @@ restart the container
 
 connect via mongo shell using user admin role created and create normal users  - see http://docs.mongodb.org/manual/tutorial/add-user-to-database/
 
+
+
+TBD
+---
+
+options to start in master mode, slave mode, sharded mode with mongos etc.. although this can be done via passing the right commands to run during docker run
