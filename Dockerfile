@@ -20,8 +20,8 @@ MAINTAINER lexlapax@gmail
 
 # Hack for initctl no being available in Ubuntu
 # https://github.com/dotcloud/docker/issues/1024
-RUN dpkg-divert --local --rename --add /sbin/initctl
-RUN ln -s /bin/true /sbin/initctl
+#RUN dpkg-divert --local --rename --add /sbin/initctl
+#RUN ln -s /bin/true /sbin/initctl
 
 # Install MongoDB
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
